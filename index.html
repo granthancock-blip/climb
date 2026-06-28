@@ -110,7 +110,9 @@
   .cardbills{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.cb{flex:1;min-width:150px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:9px 12px}.cb .cbt{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted2);font-weight:600}.cb .cba{font-family:"IBM Plex Mono";font-size:15px;font-weight:600;margin-top:2px}.cb .cbd{font-size:11px;color:var(--muted);margin-top:1px}
   .flag{display:flex;gap:8px;font-size:12px;color:var(--text);background:rgba(224,134,96,.07);border:1px solid rgba(224,134,96,.22);border-radius:8px;padding:9px 12px;margin-top:11px}.flag.good{background:rgba(231,185,79,.07);border-color:var(--gold-dim)}.flag .ic{flex-shrink:0;font-weight:700;color:var(--alert)}.flag.good .ic{color:var(--gold)}
   .advancebtn{display:inline-flex;align-items:center;gap:7px;margin-top:13px;padding:9px 15px;border-radius:8px;border:1px solid var(--green-dim);background:rgba(95,214,160,.1);color:var(--green);font-family:"Space Grotesk";font-weight:600;font-size:12px;cursor:pointer}.advancebtn:hover{background:rgba(95,214,160,.18)}
-  .foot-note{margin-top:22px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:13px}.foot-note h3{font-size:13px;color:var(--gold);margin-bottom:8px}.foot-note p{font-size:12px;color:var(--muted);margin-bottom:6px}.foot-note p b{color:var(--text);font-weight:600}  .ambient{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;background:linear-gradient(to bottom,rgba(244,184,96,.20),rgba(232,149,107,.07) 28%,transparent 58%);transition:opacity 1.2s ease}
+  .foot-note{margin-top:22px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:13px}.foot-note h3{font-size:13px;color:var(--gold);margin-bottom:8px}.foot-note p{font-size:12px;color:var(--muted);margin-bottom:6px}.foot-note p b{color:var(--text);font-weight:600}
+  .note-block p{font-size:12px;color:var(--muted);margin:6px 0 0;line-height:1.5}.note-block p b{color:var(--text);font-weight:600}.note-block p.muted{color:var(--muted2);font-size:11px;margin-top:8px}
+  .ambient{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;background:linear-gradient(to bottom,rgba(244,184,96,.20),rgba(232,149,107,.07) 28%,transparent 58%);transition:opacity 1.2s ease}
   .rail{position:fixed;left:0;top:0;bottom:0;width:42px;z-index:5;pointer-events:none}
   .railinner{position:absolute;left:0;right:0;top:26px;bottom:26px}
   .railsvg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
@@ -280,7 +282,7 @@
     <div class="goal"><svg viewBox="0 0 24 24"><path d="M3 17l4-1 14-9a1.5 1.5 0 00-2-2L10 13l-4-1-3 1 2 2-2 2z"/></svg><span>Travel far, worry less</span></div>
     <div class="goal"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 16V9m4 7V6m4 10v-4"/></svg><span>Save hard, climb higher</span></div>
   </div>
-  <div class="banner" id="banner"><span class="dot"></span><span id="banner-txt"></span></div>
+  <div class="banner" id="banner" style="display:none"><span class="dot"></span><span id="banner-txt"></span></div>
   <div class="climbbar"><div class="row"><div class="big mono"><span class="paid" id="paid">$0</span> <span style="color:var(--muted2)">ground gained</span></div><div class="camps" id="camps">0 of 8 camps cleared</div></div><div class="track"><div id="trackfill"></div></div><div class="foot"><span id="remain" class="mono">—</span><span>summit at $0</span></div><div class="momentum" id="momentum"></div></div>
 
   <div class="card" id="drawer"><div class="chead"><span class="ti">Adjust &amp; correct</span><span class="hint">balances · cash · backups</span><span class="chev">▶</span></div>
@@ -289,7 +291,14 @@
       <div class="ctrls"><div class="ctrl"><label>Starting checking balance ($)</label><input type="number" id="startcash" step="50"></div><div class="ctrl"><label>Operating floor ($)</label><input type="number" id="floor" step="50"></div><div class="ctrl"><label>Where are you now?</label><select id="curmonth"></select></div></div>
       <label class="toggle"><input type="checkbox" id="cola"> Assume Jan-2027 VA COLA (+2.5%) — kept through resets</label>
       <div class="btnrow"><button class="btn" id="dlbackup">↓ Download backup</button><button class="btn" id="loadbackup">↑ Load backup</button><input type="file" id="fileinput" accept="application/json" style="display:none"><button class="btn danger" id="reset">Reset plan (keeps COLA)</button></div>
-      <div class="emptynote" id="backupmsg"></div></div>
+      <div class="emptynote" id="backupmsg"></div>
+      <div class="lab" style="margin-top:16px">How it works</div>
+      <div class="note-block">
+        <p><b>Tune any month's spending</b> with the sliders inside its card — the summit date up top moves as you drag. Flip "apply to every month" to make a cut permanent.</p>
+        <p><b>Check off</b> each payment as you make it; the daily ledger shows you're never short. Two card bills, in full: Savor (the 18th) · Amex (the 16th).</p>
+        <p><b>Back it up</b> any time — balances, budgets, entries, and check-marks all save and reload.</p>
+        <p class="muted">Original plan: final payment early Feb 2027, ~$764 interest.</p>
+      </div></div>
   </div>
 
   <div class="card" id="extradrawer"><div class="chead"><span class="ti">Underspend / Extra income</span><span class="hint">log it → straight to the avalanche</span><span class="chev">▶</span></div>
@@ -298,19 +307,9 @@
       <div class="entrylist" id="entrylist"></div><div class="applied" id="appliedtotal"></div></div>
   </div>
 
-  <div class="card cost" style="padding:0"><div class="chead" style="cursor:default"><span class="ti">Cost of overspending — this month</span></div>
-    <div style="padding:0 17px 16px"><div class="csub" id="cost-month">See the damage before you splurge.</div><div class="sliderrow"><input type="range" id="costslider" min="0" max="2000" step="50" value="0"><span class="amt mono" id="costamt">$0</span></div><div class="result" id="costresult">Drag to see the hit to your summit date.</div></div></div>
-
   <div class="seclab">The ascent — balances by APR</div><div class="kill" id="killlist"></div>
   <div class="seclab">Monthly cash flow — tap a month, tune the budget, watch the date move</div>
   <div class="donestrip" id="donestrip"></div><div id="months"></div>
-
-  <div class="foot-note"><h3>You've got this</h3>
-    <p><b>Tune any month's spending</b> with the sliders inside its card — the summit date up top moves as you drag. Flip "apply to every month" to make a cut permanent.</p>
-    <p><b>Check off</b> each payment as you make it; the daily ledger shows you're never short. <b>Two card bills, in full:</b> Savor (the 18th) · Amex (the 16th).</p>
-    <p><b>Back it up</b> any time — balances, budgets, entries, and check-marks all save and reload.</p>
-    <p style="margin-top:8px;color:var(--muted2);font-size:11px">Every step is ground gained toward the summit. Original plan: final payment early Feb 2027, ~$764 interest.</p>
-  </div>
 </div>
 <script>
 const STORE={
@@ -460,10 +459,9 @@ function refreshTop(){
   const dayDelta=pd&&bpd?Math.round((bpd-pd)/86400000):0;
   let deltaTxt='';if(dayDelta>=3)deltaTxt=` · <span class="earlier">${dayDelta} days earlier than plan ⚡</span>`;else if(dayDelta<=-3)deltaTxt=` · <span style="color:var(--alert)">${-dayDelta} days later than plan</span>`;
   document.getElementById('ns-meta').innerHTML=`${wks} weeks away · ~<b>${fmt0(cur.ti)}</b> interest${deltaTxt}`;
-  const b=document.getElementById('banner'),bt=document.getElementById('banner-txt');b.className='banner';
-  if(dayDelta>=3){b.className='banner ahead';bt.innerHTML=`<b>Ahead of schedule.</b> You've pulled the summit in by <span class="mono">${dayDelta} days</span> — keep pushing.`;}
-  else if(dayDelta<=-3){b.className='banner behind';bt.innerHTML=`<b>Slipped back ${-dayDelta} days.</b> Tighten a month below or add to a move to recover.`;}
-  else bt.innerHTML=`<b>On track for the summit.</b> Final payment around <span class="mono">${dlong(pd).replace(', '+ (pd?pd.getUTCFullYear():''),'')}</span>.`;
+  const b=document.getElementById('banner'),bt=document.getElementById('banner-txt');
+  if(dayDelta<=-3){b.className='banner behind';b.style.display='';bt.innerHTML=`<b>Slipped back ${-dayDelta} days.</b> Tighten a month below or add to a move to recover.`;}
+  else{b.style.display='none';bt.innerHTML='';}
   const remaining=state.debts.reduce((s,d)=>s+Math.max(d.bal,0),0),paid=Math.max(0,START_TOTAL-remaining),pct=Math.max(0,Math.min(100,paid/START_TOTAL*100)),cleared=state.debts.filter(d=>d.bal<0.01).length;
   document.getElementById('paid').textContent=fmt0(paid);document.getElementById('camps').textContent=cleared+' of 8 camps cleared';
   document.getElementById('remain').textContent=fmt0(remaining)+' to climb';document.getElementById('trackfill').style.width=pct+'%';
@@ -472,7 +470,7 @@ function refreshTop(){
   sorted.forEach(d=>{ord++;const c=d.bal<0.01;let cc,t,rc='';if(c){cc='cleared';t='Cleared ✓';rc='is-cleared';}else if(d.key===fa){cc='target';t='Climbing now';rc='is-target';}else{cc='queued';t='Ahead';}kl.insertAdjacentHTML('beforeend',`<div class="krow ${rc}"><div class="ord mono">${ord}</div><div class="nm">${ACC[d.key].n}<span class="apr">${d.apr.toFixed(2)}%</span></div><div class="bal mono">${c?'—':fmt0(d.bal)}</div><div class="pill ${cc}">${t}</div></div>`);});
   return cur;
 }
-function renderOutputs(){const cur=refreshTop();renderMonths(cur);renderCost(cur,cur.months[cur.payoffIdx]);renderEntries(cur);checkMilestones();}
+function renderOutputs(){const cur=refreshTop();renderMonths(cur);renderEntries(cur);checkMilestones();}
 function renderEntries(cur){
   const m0=(cur||engine(state.debts,opts())).months[0];document.getElementById('entrymonthlbl').textContent='→ applies to '+(m0?m0.lbl:'—');
   const list=document.getElementById('entrylist');list.innerHTML='';
@@ -529,24 +527,15 @@ function setBudget(mi,cat,v){
   if(state.applyAll){state.budgetDefault[cat]=v;Object.keys(state.budgetOverride).forEach(k=>{if(state.budgetOverride[k])delete state.budgetOverride[k][cat];});}
   else{state.budgetOverride[mi]=state.budgetOverride[mi]||{};state.budgetOverride[mi][cat]=v;}
 }
-function renderCost(cur,cm){
-  document.getElementById('cost-month').textContent=`Extra spending in ${cur.months[0]?cur.months[0].lbl:'this month'} pushes the summit back:`;
-  const v=+document.getElementById('costslider').value;document.getElementById('costamt').textContent=fmt0(v);
-  const res=document.getElementById('costresult');if(v===0){res.innerHTML='Drag to see the hit to your summit date.';return;}
-  const wi=engine(state.debts,{...opts(),monthAdjust:{...opts().monthAdjust,[state.startIdx]:((opts().monthAdjust||{})[state.startIdx]||0)-v}});
-  const wpd=payoffDate(wi.months),cpd=payoffDate(cur.months);const dd=Math.round((wpd-cpd)/86400000);
-  res.innerHTML=`Overspending <b>${fmt0(v)}</b> → summit <span class="pen">${dd>0?dd+' days later':'~same day'}</span>, <span class="pen">+${fmt(wi.ti-cur.ti)}</span> interest.`;
-}
 function bind(){
   let _rt;window.addEventListener('resize',()=>{clearTimeout(_rt);_rt=setTimeout(()=>{positionRailNodes();updateRail(window._railpct||0);},150);});
   document.querySelector('#drawer .chead').addEventListener('click',()=>document.getElementById('drawer').classList.toggle('open'));
   document.querySelector('#extradrawer .chead').addEventListener('click',()=>document.getElementById('extradrawer').classList.toggle('open'));
-  document.getElementById('costslider').addEventListener('input',()=>{const cur=engine(state.debts,opts());renderCost(cur,cur.months[cur.payoffIdx]);});
   document.getElementById('entryadd').addEventListener('click',()=>{const inp=document.getElementById('entryamt'),v=parseFloat(inp.value);if(isNaN(v)||v===0)return;const id='e'+Date.now()+Math.floor(Math.random()*999),dateStr=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'});state.entries.push({id,monthIdx:state.startIdx,amount:v,dateStr});inp.value='';save();renderOutputs();});
   document.getElementById('dlbackup').addEventListener('click',()=>{try{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='operation-zero-backup.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);document.getElementById('backupmsg').textContent='Backup downloaded — load it any time to restore.';}catch(e){document.getElementById('backupmsg').textContent='Download blocked here; your plan is still auto-saved in this browser.';}});
   document.getElementById('loadbackup').addEventListener('click',()=>document.getElementById('fileinput').click());
   document.getElementById('fileinput').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const s=JSON.parse(r.result);if(!s.debts||s.debts.length!==8)throw 0;state=Object.assign({entries:[],checks:{},budgetDefault:{...DISC_DEFAULTS},budgetOverride:{},applyAll:false},s);save();window._clearedSet=undefined;buildInputs();renderOutputs();document.getElementById('backupmsg').textContent='Backup loaded ✓';}catch(err){document.getElementById('backupmsg').textContent='Could not read that file.';}};r.readAsText(f);e.target.value='';});
-  document.getElementById('reset').addEventListener('click',()=>{const k=state.cola;state={debts:DEFAULTS.map(d=>({...d})),startIdx:defaultStartIdx(),startCash:3600,floor:1000,cola:k,entries:[],checks:{},budgetDefault:{...DISC_DEFAULTS},budgetOverride:{},applyAll:false};try{STORE.del('oz5');}catch(e){}document.getElementById('costslider').value=0;document.getElementById('backupmsg').textContent='Reset to the original plan — budgets, entries, check-marks cleared'+(k?', COLA kept on':'')+'.';buildInputs();renderOutputs();});
+  document.getElementById('reset').addEventListener('click',()=>{const k=state.cola;state={debts:DEFAULTS.map(d=>({...d})),startIdx:defaultStartIdx(),startCash:3600,floor:1000,cola:k,entries:[],checks:{},budgetDefault:{...DISC_DEFAULTS},budgetOverride:{},applyAll:false};try{STORE.del('oz5');}catch(e){}document.getElementById('backupmsg').textContent='Reset to the original plan — budgets, entries, check-marks cleared'+(k?', COLA kept on':'')+'.';buildInputs();renderOutputs();});
 }
 async function save(){try{await STORE.set('oz5',JSON.stringify(state));}catch(e){}}
 async function load(){try{const v=await STORE.get('oz5');if(v){const s=JSON.parse(v);state=Object.assign(state,s);if(!state.debts||state.debts.length!==8)state.debts=DEFAULTS.map(d=>({...d}));['entries'].forEach(k=>{if(!state[k])state[k]=[];});if(!state.checks)state.checks={};if(!state.budgetDefault)state.budgetDefault={...DISC_DEFAULTS};if(!state.budgetOverride)state.budgetOverride={};}}catch(e){}
